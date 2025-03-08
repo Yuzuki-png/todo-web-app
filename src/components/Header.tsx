@@ -1,23 +1,9 @@
-"use client";
-
-import { useAuth } from "@/hooks/useAuth";
-import Link from "next/link";
-
 export default function Header() {
-  const { user, logout } = useAuth();
-
   return (
-    <header className="w-full p-4 bg-gray-800 text-white flex justify-between">
-      <Link href="/" className="text-xl font-bold">
-        ToDoアプリ
-      </Link>
-      {user ? (
-        <button onClick={logout} className="text-red-400">
-          ログアウト
-        </button>
-      ) : (
-        <Link href="/login">ログイン</Link>
-      )}
+    <header className="bg-blue-500 text-white py-4 px-6 shadow-md">
+      <div className="container mx-auto flex justify-between items-center">
+        <h1 className="text-xl font-bold">ToDo App</h1>
+      </div>
     </header>
   );
 }

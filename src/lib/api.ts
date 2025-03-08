@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://task-backend:3000";
+
 export const api = axios.create({
-  baseURL: "http://nest:3001", // コンテナ名を指定してリクエスト
+  baseURL: API_URL,
 });

@@ -7,9 +7,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body>
+      <body className="bg-gray-100">
         <Header />
-        {children}
+        <main className="container mx-auto p-6">{children}</main>
       </body>
     </html>
   );

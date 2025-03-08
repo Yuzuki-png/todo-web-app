@@ -1,37 +1,51 @@
-"use client";
-
-import TodoItem from "@/components/TodoItem";
+import { Todo } from "@/app/page";
+import TodoItem from "./TodoItem";
 import { api } from "@/lib/api";
-
-type Todo = {
-  id: number;
-  text: string;
-  completed: boolean;
-};
 
 type Props = {
   todos: Todo[];
-  setTodos: (todos: Todo[]) => void;
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
 
 export default function TodoList({ todos, setTodos }: Props) {
+  // Todoの完了状態を切り替える
   const toggleTodo = async (id: number, completed: boolean) => {
     try {
-      await api.patch(`/todos/${id}`, { completed: !completed });
-      setTodos(
-        todos.map((todo) =>
-          todo.id === id ? { ...todo, completed: !completed } : todo
-        )
-      );
+      // バックエンドのエンドポイントに合わせて /toggle を追加
+      const response = await api.patch<Todo>(`/tasks/${id}/toggle`);
+
+      if (response.data) {
+        // APIからの応答を使用して状態を更新
+        setTodos((prevTodos) =>
+          prevTodos.map((todo) => (todo.id === id ? response.data : todo))
+        );
+      }
     } catch (error) {
-      console.error("ToDo更新エラー", error);
+      console.error("Todoの更新中にエラーが発生しました:", error);
+    }
+  };
+
+  // Todoを削除する
+  const deleteTodo = async (id: number) => {
+    try {
+      await api.delete(`/tasks/${id}`);
+
+      // 削除に成功したら、ローカルの状態からも削除
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    } catch (error) {
+      console.error("Todoの削除中にエラーが発生しました:", error);
     }
   };
 
   return (
-    <ul className="mt-4 w-64">
+    <ul className="mt-4 w-full max-w-md">
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} />
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+        />
       ))}
     </ul>
   );
