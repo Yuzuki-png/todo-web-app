@@ -6,7 +6,7 @@ WORKDIR /app
 
 # package.jsonとpackage-lock.jsonをコピーして依存関係をインストール
 COPY package.json package-lock.json ./
-RUN npm install --frozen-lockfile
+RUN npm ci
 
 # アプリのコードをコピー
 COPY . .
