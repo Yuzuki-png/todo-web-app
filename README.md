@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo アプリ
 
-## Getting Started
+シンプルで使いやすいタスク管理アプリケーションです。日々のタスクを効率的に管理し、生産性を向上させましょう。
 
-First, run the development server:
+## 機能
+
+- **ユーザー認証**: 安全なログイン/ログアウト機能
+- **タスク管理**: タスクの追加、表示、完了/未完了の切り替え、削除
+- **リアルタイムフィードバック**: 操作成功/失敗時のトースト通知
+- **レスポンシブデザイン**: あらゆるデバイスに対応
+
+## 技術スタック
+
+- **フロントエンド**: Next.js, TypeScript, React
+- **UI**: shadcn/ui, Tailwind CSS
+- **API 通信**: Axios
+- **認証**: JWT 認証
+- **コンテナ化**: Docker
+
+## セットアップ
+
+### Docker を使用する場合
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# リポジトリをクローン
+git clone <リポジトリURL>
+
+# ディレクトリに移動
+cd my-todo-frontend
+
+# Dockerコンテナを構築して起動
+docker-compose up
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ローカル開発
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# リポジトリをクローン
+git clone <リポジトリURL>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# ディレクトリに移動
+cd my-todo-frontend
 
-## Learn More
+# 依存関係のインストール
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+# 開発サーバーの起動
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 使い方
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. ログイン画面でアカウント認証を行います
+2. メイン画面でタスクを追加します
+3. タスクの完了状態を切り替えるには、チェックボックスをクリックします
+4. タスクを削除するには、ゴミ箱アイコンをクリックします
 
-## Deploy on Vercel
+## API エンドポイント
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+アプリケーションは以下のエンドポイントと通信します：
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `POST /auth/login` - ユーザー認証
+- `GET /auth/me` - ログインユーザー情報取得
+- `GET /tasks` - タスク一覧取得
+- `POST /tasks` - 新規タスク作成
+- `PATCH /tasks/:id/toggle` - タスク完了状態の切り替え
+- `DELETE /tasks/:id` - タスク削除
