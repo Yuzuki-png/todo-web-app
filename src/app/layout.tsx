@@ -1,4 +1,14 @@
-import Header from "@/components/Header";
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { AuthProvider } from "@/components/AuthContext";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Todo App",
+  description: "タスク管理アプリケーション",
+};
 
 export default function RootLayout({
   children,
@@ -7,9 +17,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="bg-gray-100">
-        <Header />
-        <main className="container mx-auto p-6">{children}</main>
+      <body className={inter.className}>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
