@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://todoapp.click";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://todoapp.click";
 export async function DELETE(request: NextRequest) {
   try {
     // URLからidをパース
