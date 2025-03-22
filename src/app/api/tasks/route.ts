@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://task-backend:3000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://todoapp.click";
 
 // タスクの一覧取得
 export async function GET() {
