@@ -23,7 +23,7 @@
 
 ```bash
 # リポジトリをクローン
-git clone <リポジトリURL>
+git clone https://github.com/Yuzuki-png/todo-web-app.git
 
 # ディレクトリに移動
 cd my-todo-frontend
@@ -36,7 +36,7 @@ docker-compose up
 
 ```bash
 # リポジトリをクローン
-git clone <リポジトリURL>
+git clone https://github.com/Yuzuki-png/todo-web-app.git
 
 # ディレクトリに移動
 cd my-todo-frontend
